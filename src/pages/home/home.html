@@ -1,0 +1,95 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>MSU DH</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content padding *ngIf="global.accessLevel==='STUDENT'">
+	<ion-card>
+		<!--img src="img/advance-card-map-madison.png"-->
+		<ion-item>
+			<!--ion-icon name="logo-usd" item-start large></ion-icon-->
+			<h1><b>Gold Card</b></h1>
+			<p>Balance</p>
+			<button color="secondary"  ion-button round outline item-end large>
+				<ion-icon name="logo-usd">{{ global.session.fldbalance/100 | number:'1.2-2' }}</ion-icon>
+			</button>
+		</ion-item>
+		<ion-item>
+			<span item-end>Min Bal:</span>
+			<span item-end color="danger"><b>${{ global.session.fldlower_theshold/100 | number:'1.2-2' }}</b></span>
+			<span item-end>
+				<button icon-start ion-button outline  (click)="editMin()">
+					<ion-icon name="create"></ion-icon>
+				</button>
+			</span>
+			<button icon-start ion-button outline  (click)="topup()">
+				<ion-icon name="card"></ion-icon> Topup
+			</button>
+		</ion-item>
+	</ion-card>
+	<ion-slides pager="true" *ngIf="meals">
+		<ion-slide *ngFor="let meal of meals; let i= index;">
+			<ion-card>
+				<ion-item>
+					<ion-avatar item-start>
+						<img src="assets/icon/icon-recommend.png"/>
+					</ion-avatar>
+					<h2><b>Recommended Meal {{i+1}}</b></h2>
+				</ion-item>
+				<img src="{{ meal.fldpicture }}" width="100%" height="100%" />
+				<ion-item>
+					<ion-avatar item-start>
+						<img src="assets/icon/food.png"/>
+					</ion-avatar>
+					<h2><b>{{ meal.fldtitle }}</b></h2>
+					<p>{{ meal.fldtype }}</p>
+					<button color="secondary" ion-button round outline item-end>
+						<ion-icon name="logo-usd">{{ meal.fldcost/100 | number:'1.2-2' }}</ion-icon>
+					</button>
+				</ion-item>
+				<ion-card-content><p>{{ meal.flddescription }}</p></ion-card-content>
+				<!--ion-row>
+					<ion-col>
+						<button ion-button icon-start clear small>
+							<ion-icon name="thumbs-up"></ion-icon>
+							<div>12 Likes</div>
+						</button>
+					</ion-col>
+					<ion-col>
+						<button ion-button icon-start clear small>
+							<ion-icon name="thumbs-down"></ion-icon>
+							<div>4 Dislikes</div>
+						</button>
+					</ion-col>
+				</ion-row-->
+			</ion-card>
+		</ion-slide>
+	</ion-slides>
+</ion-content>
+<ion-content padding *ngIf="global.accessLevel==='STAFF'">
+	<ion-grid style="padding-top: 50px;">
+		<ion-row>
+			<ion-col col-2></ion-col>
+			<ion-col col-8 style="margin-left: auto; margin-right: auto; display: block;">
+				<img src="assets/imgs/logo.png" style="width:100%;height:auto;">
+			</ion-col>
+			<ion-col col-2></ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-list *ngIf="global.session" style="margin-top: 30px;">
+		<ion-item>
+			<ion-icon name="grid" item-start></ion-icon>
+			<h2>{{ global.session.fldforename }} {{ global.session.fldsurname }}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="contact" item-start></ion-icon>
+			<h2>{{ global.session.fldusername }}</h2>
+		</ion-item>
+	</ion-list>
+	<button ion-button icon-start block color="secondary" outline item-end (click)="menu()"><ion-icon name="timer"></ion-icon> Meals Menu</button>
+	<button ion-button icon-start block color="secondary" outline item-end (click)="allmeals()"><ion-icon name="pizza"></ion-icon> All Meals</button>
+	<button ion-button icon-start block color="secondary" outline item-end (click)="feedback()"><ion-icon name="filing"></ion-icon> Feedback</button>
+</ion-content>

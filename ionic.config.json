@@ -1,0 +1,7 @@
+{
+  "name": "MSUDH",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

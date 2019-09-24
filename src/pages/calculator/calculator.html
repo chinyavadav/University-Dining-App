@@ -1,0 +1,61 @@
+<!--
+  Generated template for the CalculatorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Calculator</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <!--img src="img/advance-card-map-madison.png"-->
+    <ion-item>
+      <!--ion-icon name="logo-usd" item-start large></ion-icon-->
+      <h1><b>Gold Card</b></h1>
+      <p>Balance</p>
+      <button color="secondary"  ion-button round outline item-end large>
+        <ion-icon name="logo-usd">{{ global.session.fldbalance/100 | number:'1.2-2' }}</ion-icon>
+      </button>
+    </ion-item>
+    <ion-item>
+      <span item-end>Min Bal:</span>
+      <span item-end color="danger"><b>${{ global.session.fldlower_theshold/100 | number:'1.2-2' }}</b></span>
+      <button icon-start ion-button outline  (click)="topup()">
+        <ion-icon name="card"></ion-icon> Topup
+      </button>
+    </ion-item>
+  </ion-card>
+  <form *ngIf="average" (ngSubmit)="calculate()" [formGroup]="calculatorForm">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="timer" item-start large></ion-icon>
+        <h1><b>Dairly Consumption</b></h1>
+      </ion-item>
+      <ion-item>
+        <ion-label>Breakfast</ion-label>
+        <ion-checkbox formControlName="breakfast"></ion-checkbox>
+        <span item-end>Average: ${{ average.averageBreakfast/100 | number:'1.2-2' }}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Lunch</ion-label>
+        <ion-checkbox formControlName="lunch"></ion-checkbox>
+        <span item-end>Average: ${{ average.averageLunchSupper/100 | number:'1.2-2' }}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Supper</ion-label>
+        <ion-checkbox formControlName="supper"></ion-checkbox>
+        <span item-end>Average: ${{ average.averageLunchSupper/100 | number:'1.2-2' }}</span>
+      </ion-item>
+      <ion-item>
+        <button icon-start ion-button outline block>
+          <ion-icon name="calculator"></ion-icon> Calculate
+        </button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+

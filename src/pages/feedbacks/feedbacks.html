@@ -1,0 +1,29 @@
+<!--
+  Generated template for the feedbackPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Feedback</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top color="primary">
+    <ion-searchbar showCancelButton autocomplete="on" color="danger" (ionInput)="filterFeedbacks($event)" placeholder="Filter Feedback"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="primary" class="card-background-page">
+  <ion-card *ngFor="let feedback of feedbacks" (click)="show(feedback)">
+    <!--img src="img/advance-card-map-madison.png"-->
+    <ion-item>
+      <ion-icon name="filing" item-start large></ion-icon>
+      <h2>{{ feedback.fldregno }}</h2>
+      <p>{{ feedback.fldmessage }}</p>
+    </ion-item>
+
+    <ion-item>
+      <span item-end>{{ feedback.fldtimestamp }}</span>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

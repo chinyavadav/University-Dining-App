@@ -1,0 +1,60 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+            <img src="assets/icon/logo.png" style="width:100%;height:auto;">
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content padding>
+    <ion-list *ngIf="global.session">
+      <button menuClose ion-item detail-none>
+        <ion-icon item-start name="home"></ion-icon> Home</button>
+      <button *ngIf="global.accessLevel==='STUDENT'" menuClose ion-item detail-none (click)="openPage(0)">
+        <ion-icon item-start name="clipboard"></ion-icon> Meals Menu</button>
+      <button *ngIf="global.accessLevel==='STUDENT'" menuClose ion-item detail-none (click)="openPage(1)">
+        <ion-icon item-start name="paper"></ion-icon> Account Statement</button>
+      <button *ngIf="global.accessLevel==='STUDENT'" menuClose ion-item detail-none (click)="openPage(2)">
+        <ion-icon item-start name="calculator"></ion-icon> Budgeting Calculator</button>
+      <button *ngIf="global.accessLevel==='STUDENT'" menuClose ion-item detail-none (click)="openPage(3)">
+        <ion-icon item-start name="filing"></ion-icon> Feedback</button>
+
+      <button *ngIf="global.accessLevel==='STAFF'" menuClose ion-item detail-none (click)="openPage(0)">
+        <ion-icon item-start name="timer"></ion-icon> Today's Menu</button>
+      <button *ngIf="global.accessLevel==='STAFF'" menuClose ion-item detail-none (click)="openPage(5)">
+        <ion-icon item-start name="pizza"></ion-icon> All Meals</button>
+      <button *ngIf="global.accessLevel==='STAFF'" menuClose ion-item detail-none (click)="openPage(6)">
+        <ion-icon item-start name="filing"></ion-icon> Feedback</button>
+
+
+      <ion-item-divider>Account</ion-item-divider>
+      <ion-item>
+        <ion-icon item-start name="contact"></ion-icon>
+        <h2><b>{{ global.session.fldforename }} {{ global.session.fldsurname }}</b></h2>
+        <hr/>
+        <h2 *ngIf="global.accessLevel==='STUDENT'">{{ global.session.fldregno }}</h2>
+        <h2 *ngIf="global.accessLevel==='STAFF'">{{ global.session.fldusername }}</h2>
+      </ion-item>
+      <button menuClose ion-item detail-none (click)="openPage(4)">
+        <ion-icon item-start name="cog"></ion-icon> Settings</button>
+      <button *ngIf="global.session" menuClose ion-item detail-none (click)="logout()">
+        <ion-icon item-start name="log-out"></ion-icon> Logout</button>
+    </ion-list>
+    <ion-list *ngIf="!global.session">
+      <button menuClose ion-item detail-none (click)="openPage(4)">
+        <ion-icon item-start name="cog"></ion-icon> Settings</button>
+    </ion-list>
+   </ion-content>
+    <ion-footer padding>
+      <ion-label text-center>
+          MSU Dining App App v.1.0.2
+          <br>by <b>Bright Pfupa</b>
+      </ion-label>  
+  </ion-footer>
+  </ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
