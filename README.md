@@ -29,4 +29,4 @@ npm i
 5. create database named hackathorn and import hackathon.sql
 6. in project path run
 ionic serve
-7. when the login screen appears, slide from left to right and configure server ip e.g http://localhost/hackathon/api/
+7. when the login screen appears, slide from left to right and configure server ip e.g http://localhost/msudh/
